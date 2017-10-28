@@ -1,0 +1,18 @@
+1)  Which process would you use to reload data after using mongodump?
+ans : b Mongorestore
+
+2. After stopping the balancer on your sharded cluster, you may need to wait for a live migration to finish before the balancer stops. Type the command you would use in Mongo to query if the balancer is currently running.? 
+ans : sh.stopBalance();
+
+3) How to take offline backup in replica sets? Please provide the steps here.?
+ans :: Steps should be:: 
+1) Need to make sure Oplog size should be large enough to hold oplog for replica downtime . else replicaset will became stale 
+2) shutDown replicaset . 
+3) take as os levle backup of data directory 
+
+4) How to take online backup with current oplog? Please provide the steps here.
+ans:: mongodump --host mypc  --port 27017  --authenticationDatabase admin -u admindbuser -p admindbpassword  \
+ --db myinfo   -o /backup_data/backup/  --oplog --gzip
+
+5) How to restore a single database from full back up?
+mongorestore dumpdir/  --db testdb1  -v -h mypc:27017 --authenticationDatabase admin -u admindbuser -p admindbpassword --oplogReplay 
